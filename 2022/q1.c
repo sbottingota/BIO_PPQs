@@ -1,11 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
-#define MAX_STRING_SIZE 11  // 10 characters, plus null.
-
-#define ALPHABET "ABCDEFGHIJKLMNOPQRSTUVWXYZ" // whitespace for offset (as in the question indices begin at 1)
-#define ALPHABET_LENGTH 26
+#include "q1.h"
 
 int indexof(char *str, char c) {
     return strchr(str, c) - str;
@@ -24,15 +19,3 @@ void decrypt(char *str) {
     }
 }
 
-int main() {
-    char *str = malloc(MAX_STRING_SIZE);
-
-    printf("Enter the encrypted str: ");
-    scanf("%s", str);
-
-    decrypt(str);
-
-    printf("\n%s\n", str);
-
-    free(str);
-}
