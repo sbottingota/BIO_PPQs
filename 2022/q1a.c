@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 #include "q1.h"
 
+// decrypt the given string
 int main() {
-    char *str = malloc(MAX_STRING_SIZE);
+    char str[MAX_STRING_SIZE] = {0};
 
     printf("Enter the encrypted str: ");
     scanf("%s", str);
@@ -12,7 +12,5 @@ int main() {
     decrypt(str);
 
     printf("\n%s\n", str);
-
-    free(str);
 }
 
