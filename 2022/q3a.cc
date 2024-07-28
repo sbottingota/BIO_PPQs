@@ -5,13 +5,11 @@
 
 int main() {
     std::string cars;
-    int preference_list_index;
+    int n;
 
-    std::cin >> cars >> preference_list_index;
+    std::cin >> cars >> n;
 
-    std::vector<std::string> preference_lists = get_preference_lists(cars);
-
-    std::cout << preference_lists[preference_list_index - 1] << std::endl;
+    std::cout << get_nth_preference_list(cars, n) << std::endl;
 
     return 0;
 }

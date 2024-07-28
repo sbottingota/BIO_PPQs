@@ -1,8 +1,6 @@
-#include <vector>
 #include <string>
 
 
-std::vector<std::string> get_preference_lists(std::string cars);
-std::vector<std::string> get_combinations(std::string charset);
-
-bool is_preference_list_valid(std::string, std::string);
+std::string get_nth_preference_list(std::string cars, int n);
+std::string get_nth_combination(std::string charset, int n);
+bool is_preference_list_valid(std::string preference_list, std::string cars);
