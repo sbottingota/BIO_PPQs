@@ -30,8 +30,8 @@ bool is_pat(std::string str) {
         std::reverse(left.begin(), left.end());
         std::reverse(right.begin(), right.end());
 
-        if (max_right < min_left) {
-            return is_pat(left) && is_pat(right);
+        if (max_right < min_left && is_pat(left) && is_pat(right)) {
+            return true;
         } 
     }
 
