@@ -1,5 +1,6 @@
 #include <functional>
 #include <cstdint>
+#include <cmath>
 
 #include "q2.h"
 
@@ -12,14 +13,7 @@ std::uint64_t O(std::uint64_t n) {
 }
 
 std::uint64_t T(std::uint64_t n) {
-    std::uint64_t x = 0;
-    
-    while (n > 0) {
-        for (std::uint64_t i = 0; i <= x; ++i) --n;
-        ++x;
-    }
-
-    return x;
+    return std::round(std::sqrt(2 * n));
 }
 
 std::function<std::uint64_t(std::uint64_t)> combined(std::function<std::uint64_t(std::uint64_t)> f, std::function<std::uint64_t(std::uint64_t)> g) {
