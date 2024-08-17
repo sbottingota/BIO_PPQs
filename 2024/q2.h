@@ -1,7 +1,7 @@
 #include <functional>
 
-int E(int n);
-int O(int n);
-int T(int n);
-std::function<int(int)> combined(std::function<int(int)> f, std::function<int(int)> g);
+long long E(long long n);
+long long O(long long n);
+long long T(long long n);
+std::function<long long(long long)> combined(std::function<long long(long long)> f, std::function<long long(long long)> g);
 

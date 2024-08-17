@@ -1,27 +1,27 @@
 #include <functional>
 #include "q2.h"
 
-int E(int n) {
+long long E(long long n) {
     return n * 2;
 }
 
-int O(int n) {
+long long O(long long n) {
     return n * 2 - 1;
 }
 
-int T(int n) {
-    int x = 0;
+long long T(long long n) {
+    long long x = 0;
     
     while (n > 0) {
-        for (int i = 0; i <= x; ++i) --n;
+        for (long long i = 0; i <= x; ++i) --n;
         ++x;
     }
 
     return x;
 }
 
-std::function<int(int)> combined(std::function<int(int)> f, std::function<int(int)> g) {
-    return [f, g](int n) { return g(f(g(n))); };
+std::function<long long(long long)> combined(std::function<long long(long long)> f, std::function<long long(long long)> g) {
+    return [f, g](long long n) { return g(f(g(n))); };
 }
 
 
