@@ -1,7 +1,12 @@
+#ifndef Q2_H
+#define Q2_H
+
 #include <functional>
+#include <cstdint>
 
-long long E(long long n);
-long long O(long long n);
-long long T(long long n);
-std::function<long long(long long)> combined(std::function<long long(long long)> f, std::function<long long(long long)> g);
+std::uint64_t E(std::uint64_t n);
+std::uint64_t O(std::uint64_t n);
+std::uint64_t T(std::uint64_t n);
+std::function<std::uint64_t(std::uint64_t)> combined(std::function<std::uint64_t(std::uint64_t)> f, std::function<std::uint64_t(std::uint64_t)> g);
 
+#endif

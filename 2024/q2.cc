@@ -1,27 +1,29 @@
 #include <functional>
+#include <cstdint>
+
 #include "q2.h"
 
-long long E(long long n) {
+std::uint64_t E(std::uint64_t n) {
     return n * 2;
 }
 
-long long O(long long n) {
+std::uint64_t O(std::uint64_t n) {
     return n * 2 - 1;
 }
 
-long long T(long long n) {
-    long long x = 0;
+std::uint64_t T(std::uint64_t n) {
+    std::uint64_t x = 0;
     
     while (n > 0) {
-        for (long long i = 0; i <= x; ++i) --n;
+        for (std::uint64_t i = 0; i <= x; ++i) --n;
         ++x;
     }
 
     return x;
 }
 
-std::function<long long(long long)> combined(std::function<long long(long long)> f, std::function<long long(long long)> g) {
-    return [f, g](long long n) { return g(f(g(n))); };
+std::function<std::uint64_t(std::uint64_t)> combined(std::function<std::uint64_t(std::uint64_t)> f, std::function<std::uint64_t(std::uint64_t)> g) {
+    return [f, g](std::uint64_t n) { return g(f(g(n))); };
 }
 
 

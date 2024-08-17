@@ -1,10 +1,11 @@
 #include <iostream>
 #include <functional>
 #include <string>
+#include <cstdint>
 
 #include "q2.h"
 
-std::function<long long(long long)> parse_char(char c) {
+std::function<std::uint64_t(std::uint64_t)> parse_char(char c) {
     switch (c) {
         case 'E': return E;
         case 'O': return O;
@@ -17,17 +18,18 @@ std::function<long long(long long)> parse_char(char c) {
 
 std::string get_first_bracketed_substr(std::string str) {
     int end = str.find(")");
+    std::cout << str.substr(1, end - 1) << '\n';
     return str.substr(1, end - 1);
 }
 
-std::function<long long(long long)> parse_string(std::string str) {
-    std::function<long long(long long)> fun;
+std::function<std::uint64_t(std::uint64_t)> parse_string(std::string str) {
+    std::function<std::uint64_t(std::uint64_t)> fun;
     int i;
 
     if (str[0] == '(') {
         std::string substring = get_first_bracketed_substr(str);
         fun = parse_string(substring);
-        i = substring.length();
+        i = substring.length() + 2;
     } else {
         fun = parse_char(str[0]);
         i = 1;
@@ -36,12 +38,14 @@ std::function<long long(long long)> parse_string(std::string str) {
     for (; i < str.length(); ++i) {
         if (str[i] == ')') continue;
         else if (str[i] == '(') {
+            std::cout << "combine" << '\n'; 
             std::string substring = str.substr(i);
             substring = get_first_bracketed_substr(substring);
             fun = combined(fun, parse_string(substring));
 
-            i += substring.length();
+            i += substring.length() + 2;
         } else {
+            std::cout << str[i] << '\n';
             fun = combined(fun, parse_char(str[i]));
         }
     }
