@@ -18,7 +18,6 @@ std::function<std::uint64_t(std::uint64_t)> parse_char(char c) {
 
 std::string get_first_bracketed_substr(std::string str) {
     int end = str.find(")");
-    std::cout << str.substr(1, end - 1) << '\n';
     return str.substr(1, end - 1);
 }
 
@@ -38,14 +37,12 @@ std::function<std::uint64_t(std::uint64_t)> parse_string(std::string str) {
     for (; i < str.length(); ++i) {
         if (str[i] == ')') continue;
         else if (str[i] == '(') {
-            std::cout << "combine" << '\n'; 
             std::string substring = str.substr(i);
             substring = get_first_bracketed_substr(substring);
             fun = combined(fun, parse_string(substring));
 
-            i += substring.length() + 2;
+            i += substring.length() + 1;
         } else {
-            std::cout << str[i] << '\n';
             fun = combined(fun, parse_char(str[i]));
         }
     }
