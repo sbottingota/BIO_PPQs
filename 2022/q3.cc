@@ -27,14 +27,14 @@ bool is_preference_list_valid(std::string preference_list, std::string cars) {
 }
 
 std::string get_nth_preference_list(std::string cars, int n) {
-    std::string combination;
     std::string charset = UPPER.substr(0, cars.length());
+    std::string combination(charset.length(), ' ');
 
     int i = 0;
     
     while (n > 0) {
         do {
-            combination = get_nth_combination(charset, i);
+            get_nth_combination(charset, i, combination);
             ++i;
         } while (!is_preference_list_valid(combination, cars));
         --n;
@@ -44,15 +44,11 @@ std::string get_nth_preference_list(std::string cars, int n) {
 }
 
 // get nth combinations of string; for example: ABC, 2 -> AAC (AAA, AAB, **AAC**, ABA, etc.)
-std::string get_nth_combination(std::string charset, int n) {
-    std::string ret(charset.length(), ' ');
-
+void get_nth_combination(std::string charset, int n, std::string& ret) {
     for (int i = charset.length() - 1; i >= 0; --i) {
         ret[i] = charset[n % charset.length()];
         n -= n % charset.length();
         n /= charset.length();
     }
-
-    return ret;
 }
 

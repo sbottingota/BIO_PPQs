@@ -4,13 +4,14 @@
 #include "q1.h"
 
 int get_nth_digit(int start, int n) {
-    int current = start;
+    long long current = start;
     while (n > 0) {
         ++current; 
         n -= log10(current);
     }
 
     char num[(int) log10(current) + 1];
-    sprintf(num, "%d", current);
-    return num[n] - '0';
+    sprintf(num, "%lld", current);
+    printf("%s\n", num);
+    return num[-n] - '0';
 }
