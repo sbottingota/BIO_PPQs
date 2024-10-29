@@ -23,6 +23,10 @@ fn get_permutations(len: usize, charset: &Vec<char>) -> Vec<BlockChain> {
 }
 
 fn is_valid_blockchain(chain: &BlockChain) -> bool {
+    if chain.len() < 3 {
+        return true;
+    }
+
     for i in 0..chain.len() - 2 {
         for j in i + 1..chain.len() - 1 {
             for k in j + 1..chain.len() {
@@ -42,6 +46,15 @@ pub fn get_blockchains_starting_with(s: &str, charset: &Vec<char>) -> Vec<BlockC
         modified_charset.remove(
             modified_charset.iter().position(|&c2| c1 == c2).expect("Invalid charset")
         );
+    }
+
+    if modified_charset.len() == 0 {
+        let s_chars = s.chars().collect::<BlockChain>();
+        if is_valid_blockchain(&s_chars) {
+            return vec![s_chars];
+        } else {
+            return Vec::new();
+        }
     }
 
     get_permutations(modified_charset.len(), &modified_charset)
