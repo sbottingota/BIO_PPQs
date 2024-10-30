@@ -4,15 +4,16 @@ RUSTFLAGS=-C opt-level=3
 
 .PHONY: all clear
 
-all: q1a q3a q3b
+all: q1a q2a q3a q3b
 
 clean:
-	rm -f q1a q3a q3b
+	rm -f q1a q2a q3a q3b
 
 q1a: q1a.rs q1.rs
+q2a: q2a.rs q2.rs
 q3a: q3a.rs q3.rs
 q3b: q3b.rs q3.rs
 
-q1a q3a q3b:
+q1a q2a q3a q3b:
 	$(RUSTC) $(RUSTFLAGS) $@.rs
 
