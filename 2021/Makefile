@@ -1,15 +1,26 @@
+.PHONY: all clean
+
+CXX=g++
 CPPFLAGS=-Wall -Wextra -pg -g
 
-all: q1a q1b q3a q3b
+# RUSTC=rustc
+RUSTC=clippy-driver --rustc
+RUSTFLAGS=-C opt-level=3
+
+all: q1a q1b q2a q3a q3b
 
 q1a: q1.h q1.cc q1a.cc
-	g++ q1.cc q1a.cc -o q1a $(CPPFLAGS)
-
 q1b: q1.h q1.cc q1b.cc
-	g++ q1.cc q1b.cc -o q1b $(CPPFLAGS)
-
+q2a: q2.rs q2a.rs
 q3a: q3.h q3.cc q3a.cc
-	g++ q3.cc q3a.cc -o q3a $(CPPFLAGS)
-
 q3b: q3.h q3.cc q3b.cc
-	g++ q3.cc q3b.cc -o q3b $(CPPFLAGS)
+
+q1a q1b q3a q3b:
+	$(CXX) $(CPPFLAGS) $@.cc $$(echo $@ | cut -c 1-2).cc -o $@
+
+q2a:
+	$(RUSTC) $(RUSTFLAGS) $@.rs
+
+
+clean:
+	rm -f q1a q1b q2a q3a q3b
