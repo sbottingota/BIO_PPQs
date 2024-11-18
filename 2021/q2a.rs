@@ -20,6 +20,12 @@ fn main() {
 
     for _ in 0..n_moves {
         for i in 0..players.len() {
+            println!("player {} turn", i + 1);
+            for j in 0..players.len() {
+                println!("player {} pos: {:?}", j + 1, players[j].pos);
+            }
+
+            board.print();
             if board.needs_enlargement() {
                 board.enlarge();
                 for j in 0..players.len() { // reposition players in enlarged board
@@ -35,11 +41,6 @@ fn main() {
                     players[j].reposition(&board);
                 }
             }
-            for j in 0..players.len() {
-                println!("{:?}", players[j].pos);
-            }
-
-            println!("{:?}", board.grid);
         }
     }
 

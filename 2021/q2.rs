@@ -15,62 +15,41 @@ impl Board {
         [[0, -1], [-1, -1]],
     ];
 
-    const EDGE_CONFIGURATIONS: [[[([isize; 3], [isize; 4]); 5]; 3]; 2] = [
+    const TRIANGLE_CONFIGURATIONS: [[[[isize; 3]; 6]; 3]; 2] = [
         [
-            [
-                ([0_isize, -1_isize, 0_isize], [0_isize, -1_isize, 1_isize, 0_isize]),
-                ([1_isize, -1_isize, 1_isize], [0_isize, -1_isize, 0_isize, 1_isize]),
-                ([1_isize, 0_isize, 0_isize], [1_isize, -1_isize, 1_isize, 2_isize]),
-                ([1_isize, 0_isize, 1_isize], [1_isize, 0_isize, 0_isize, 2_isize]),
-                ([0_isize, 0_isize, 0_isize], [1_isize, 0_isize, 1_isize, 1_isize])
-            ],
-            [
-                ([1_isize, 1_isize, 0_isize], [1_isize, 0_isize, 1_isize, 2_isize]),
-                ([1_isize, 1_isize, 1_isize], [1_isize, 1_isize, 0_isize, 2_isize]),
-                ([0_isize, 1_isize, 0_isize], [1_isize, 1_isize, 1_isize, 1_isize]),
-                ([0_isize, 0_isize, 1_isize], [0_isize, 1_isize, 0_isize, 0_isize]),
-                ([0_isize, 0_isize, 0_isize], [0_isize, 0_isize, 1_isize, 2_isize])
-            ],
-            [
-                ([-1_isize, 0_isize, 0_isize], [0_isize, 0_isize, 1_isize, 1_isize]),
-                ([-1_isize, -1_isize, 1_isize], [-1_isize, 0_isize, 0_isize, 0_isize]),
-                ([-1_isize, -1_isize, 0_isize], [-1_isize, -1_isize, 1_isize, 0_isize]),
-                ([0_isize, -1_isize, 1_isize], [-1_isize, -1_isize, 0_isize, 1_isize]),
-                ([0_isize, 0_isize, 0_isize], [0_isize, -1_isize, 1_isize, 2_isize])
-            ]
+            [[0, 0, 0], [0, 0, 1], [-1, 0, 0], [-1, -1, 1], [-1, -1, 0], [0, -1, 1]],
+            [[0, 0, 0], [0, -1, 1], [0, -1, 0], [1, -1, 1], [1, 0, 0], [1, 0, 1]],
+            [[0, 0, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1], [0, 1, 0], [0, 0, 1]]
         ],
         [
-            [
-                ([1_isize, 0_isize, 1_isize], [0_isize, 0_isize, 0_isize, 1_isize]),
-                ([1_isize, 1_isize, 0_isize], [1_isize, 0_isize, 1_isize, 2_isize]),
-                ([1_isize, 1_isize, 1_isize], [1_isize, 1_isize, 0_isize, 2_isize]),
-                ([0_isize, 1_isize, 0_isize], [1_isize, 1_isize, 1_isize, 1_isize]),
-                ([0_isize, 0_isize, 1_isize], [0_isize, 1_isize, 0_isize, 2_isize])
-            ],
-            [
-                ([-1_isize, -1_isize, 1_isize], [-1_isize, 0_isize, 0_isize, 0_isize]),
-                ([-1_isize, -1_isize, 0_isize], [-1_isize, -1_isize, 1_isize, 0_isize]),
-                ([0_isize, 1_isize, 1_isize], [-1_isize, -1_isize, 0_isize, 1_isize]),
-                ([0_isize, 0_isize, 0_isize], [0_isize, 1_isize, 1_isize, 0_isize]),
-                ([0_isize, 0_isize, 1_isize], [0_isize, 0_isize, 0_isize, 2_isize])
-            ],
-            [
-                ([0_isize, 1_isize, 1_isize], [0_isize, 1_isize, 0_isize, 2_isize]),
-                ([-1_isize, 1_isize, 0_isize], [0_isize, 1_isize, 1_isize, 1_isize]),
-                ([-1_isize, 0_isize, 1_isize], [-1_isize, 1_isize, 0_isize, 0_isize]),
-                ([-1_isize, 0_isize, 0_isize], [-1_isize, 0_isize, 1_isize, 0_isize]),
-                ([0_isize, 0_isize, 1_isize], [-1_isize, 0_isize, 0_isize, 1_isize])
-            ]
-]
+            [[0, 0, 1], [-1, 0, 1], [-1, -1, 1], [-1, -1, 0], [0, -1, 1], [0, 0, 0]],
+            [[0, 0, 1], [0, 1, 0], [0, 1, 1], [-1, 1, 0], [-1, 0, 1], [-1, 0, 0]],
+            [[0, 0, 1], [0, 0, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1], [0, 1, 0]]
+        ],
+    ];
+
+    const EDGE_CONFIGURATIONS: [[[isize; 5]; 3]; 2] = [
+        [
+            [2, 1, 0, 0, 1],
+            [0, 0, 1, 2, 2],
+            [1, 2, 2, 1, 0]
+        ],
+        [
+            [1, 0, 0, 1, 2],
+            [2, 2, 1, 0, 0],
+            [0, 1, 2, 2, 1]
+        ]
     ];
 
     pub fn new() -> Self {
         let mut board = Board { grid: VecDeque::new() };
         board.grid.push_front(VecDeque::new());
         board.grid[0].push_front([Self::UNFILLED, 0]);
+        /*
         for _ in 0..2 {
             board.enlarge();
         }
+        */
         board
     }
 
@@ -149,19 +128,23 @@ impl Board {
     }
 
     fn get_next_edge_from(&self, prev: Edge) -> Edge {
-        let configs = Self::EDGE_CONFIGURATIONS[prev[2]][prev[3]];
+        let triangle_config = Self::TRIANGLE_CONFIGURATIONS[prev[2]][prev[3]];
+        let edge_config = Self::EDGE_CONFIGURATIONS[prev[2]][prev[3]];
 
-        'outer: for config in configs {
+        'outer: for i in 0..edge_config.len() {
 
-            let indices = [(prev[0] as isize + config.0[0]), (prev[1] as isize + config.0[1])];
+            /*
+            let indices = [configs[i+1][0], configs
             for index in indices {
                 if index < 0 {
                     continue 'outer;
                 }
             }
+            */
 
-            if self.grid[indices[0] as usize][indices[1] as usize][prev[2]] == Self::UNFILLED {
-                return [(prev[0] as isize + config.1[0]) as usize, (prev[1] as isize + config.1[1]) as usize, config.1[2] as usize, config.1[3] as usize];
+            if self.grid[(prev[0] as isize + triangle_config[i+1][0]) as usize][(prev[1] as isize + triangle_config[i+1][1]) as usize][triangle_config[i+1][2] as usize] == Self::UNFILLED {
+
+                return [(prev[0] as isize + triangle_config[i][0]) as usize, (prev[1] as isize + triangle_config[i][1]) as usize, triangle_config[i][2] as usize, edge_config[i] as usize];
             }
         }
 
@@ -180,11 +163,10 @@ impl Board {
             }
 
             vertices.push(current);
-
         }
     }
 
-    fn can_score_point(&self, pos: Edge, id: isize) -> bool {
+    fn can_score_point(&self, pos: &Edge, id: isize) -> bool {
         let mult: isize = if pos[3] == 0 { 1 } else { -1 };
 
         'outer: for config in Self::SCORE_CONFIGURATIONS {
@@ -210,13 +192,27 @@ impl Board {
             for x in 0..self.grid[y].len() {
                 for parity in 0..self.grid[y][x].len() {
                     if self.grid[y][x][parity] != Self::UNFILLED {
-                        return [y, x, parity, 0];
+                        return [y, x + parity - 1, 1 - parity, 2];
                     }
                 }
             }
         }
 
         panic!("No such top left edge found");
+    }
+
+    #[allow(dead_code)]
+    pub fn print(&self) {
+        for (i, row) in self.grid.iter().enumerate() {
+            print!("{}", (0..i * 2).map(|_| " ").collect::<String>());
+            for square in row {
+                print!("\\{}/{}",
+                    if square[0] != Self::UNFILLED { square[0].to_string() } else { "-".to_string() },
+                    if square[1] != Self::UNFILLED { square[1].to_string() } else { "-".to_string() }
+                );
+            }
+            println!("\\");
+        }
     }
 }
 
@@ -233,18 +229,24 @@ impl Player {
     }
 
     pub fn make_move(&mut self, board: &mut Board) {
-        let edge_path = board.get_edge_path_from(self.pos);
-        board.grid[self.pos[0]][self.pos[1]][self.pos[2]] = self.id;
-        if board.can_score_point(self.pos, self.id) {
-            self.points += 1;
-        }
+        let mut edge_path = board.get_edge_path_from(self.pos);
 
-        println!("{:?}", edge_path);
-        for i in 0..self.max_moves {
-            if board.can_score_point(edge_path[i % edge_path.len()], self.id) {
-                self.pos = edge_path[i];
+        let prev_pos = self.pos; // save previous position for point scoring
+
+        println!("path: {:?}", edge_path);
+        self.pos = edge_path[edge_path.len() - 1];
+
+        let edge_path_len = edge_path.len();
+        for pos in &mut edge_path[0..std::cmp::min(self.max_moves, edge_path_len)] {
+            if board.can_score_point(pos, self.id) {
+                self.pos = *pos;
                 break;
             }
+        }
+
+        board.grid[prev_pos[0]][prev_pos[1]][prev_pos[2]] = self.id;
+        if board.can_score_point(&prev_pos, self.id) {
+            self.points += 1;
         }
     }
 
