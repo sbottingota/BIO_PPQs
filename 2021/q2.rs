@@ -159,7 +159,7 @@ impl Board {
             current = self.get_next_edge_from(current);
 
             if vertices.iter().filter(|&x| *x == current).count() > 0 {
-                return vertices;
+                return vertices.into_iter().rev().collect();
             }
 
             vertices.push(current);
@@ -251,7 +251,9 @@ impl Player {
     }
 
     pub fn needs_repositioning(&self, board: &Board) -> bool {
-        board.grid[self.pos[0]][self.pos[1]][self.pos[2]] != Board::UNFILLED
+        println!("{}", board.grid[self.pos[0]][self.pos[1]][self.pos[2]]);
+        board.grid[self.pos[0]][self.pos[1]][self.pos[2]] != Board::UNFILLED;
+        false
     }
 
     pub fn reposition(&mut self, board: &Board) {
