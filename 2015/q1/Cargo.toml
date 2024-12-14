@@ -1,0 +1,10 @@
+[package]
+name = "q1"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[[bin]]
+name = "q1b"
+path = "src/q1b.rs"
